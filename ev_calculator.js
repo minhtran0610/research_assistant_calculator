@@ -228,7 +228,7 @@ async function getEmissionFactor() {
     
     // Update to the GUI
     document.getElementById('co2Result').textContent =
-        `The emission factor of electricity produced, updated on ${response.start_time}`
+        `The emission per 1kWh consumed, updated on ${response.start_time}`
         + `, is ${response.value} gCO2/kWh.`;
     document.getElementById('emission').textContent = `${response.value} gCO2/kWh`;
 }
