@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 calculator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap"
+        rel="stylesheet"
+    />
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous"
+    />
+</head>
+<body>
+    <style>
+        .style_nav_bar {
+            height: 80px;
+        }
+
+        .style_sub_link {
+            color: #4e008e;
+            font-size: 16px;
+            font-weight: 200;
+            text-decoration: none;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .style_main_dialog {
+            height: 540px;
+            background-color: #2f2859;
+            color: white;
+        }
+
+        .style_light_buttons {
+            background-color: #e1e5f4;
+            color: #2f2859;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .style_quote_section {
+            height: 360px;
+        }
+
+        .dropdown-item {
+            color: #4e008e;
+        }
+
+        .style_extra_funtion {
+            height: 450px;
+        }
+        
+        .style_top_results {
+            color: #2f2859;
+        }
+
+        .style_compare {
+            background-color: #e1e5f4;
+            color: #2f2859;
+        }
+
+        .style_comparison_hover:hover {
+            text-decoration: underline;
+        }
+
+        .explanation {
+            font-family: "Open Sans", sans-serif;
+            font-size: 16px;
+        }
+
+        #tampere_university_logo {
+            height: 65px;
+        }
+
+        #logo {
+            font-family: "Open Sans", sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: #4e008e;
+        }
+
+        #quote_details {
+            font-family: "Open Sans", sans-serif;
+            font-size: 18px;
+        }
+
+        h1 {
+            font-family: "Open Sans", sans-serif;
+            font-weight: 700;
+            font-size: 60px;
+            text-align: center;
+        }
+
+        h4 {
+            font-family: "Open Sans", sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        h5 {
+            font-family: "Open Sans", sans-serif;
+            font-size: 25px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        h6 {
+            font-family: "Open Sans", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
+    </style>
+
+    <nav class="navbar navbar-light style_nav_bar">
+        <div class="container justify-content-space-between align-items-center">
+            <a class="navbar-brand" id="logo" href="index.html">CO2 CALCULATOR</a>
+            <a class="style_sub_link" href="ice_calculator.html">ICE Vehicles</a>
+            <a class="style_sub_link" href="ev_calculator.html">Electric Vehicles</a>
+            <a class="nav-link dropdown-toggle style_sub_link" href="#" id="navbarComparisonLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Comparison
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">EV - EV</a></li>
+                <li><a class="dropdown-item" href="#">ICEV - ICEV</a></li>
+                <li><a class="dropdown-item" href="#">EV - ICEV</a></li>
+            </ul>
+            <img
+                src="buttons/logo_TAU_fi-eng_violetti_RGB.png"
+                alt="Tampere University logo"
+                id="tampere_university_logo"
+                onclick="parent.open('https://www.tuni.fi/en/')"
+            />
+        </div>
+    </nav>
+
+    <div class="container-fluid style_main_dialog">
+        <div class="row justify-content-center align-items-center style_quote_section">
+            <div class="row text-center">
+                <h1>BURN LESS, SAVE MORE</h1>
+                <p id="quote_details" class="text-center">
+                    Fossil fuels engines of private vehicles are one of the main sources
+                    of CO2, which causes global warming. The less CO2 you emit, the
+                    better for the environment.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 col-xxl-3">
+                <button type="button" class="btn w-75 style_light_buttons" onclick="location.href='ice_calculator.html'" id="ice_button">ICEV Calculator</button>
+            </div>
+
+            <div class="col-md-4 col-xxl-3">
+                <button type="button" class="btn w-75 style_light_buttons" onclick="location.href='ev_calculator.html'" id="ev_button">EV Calculator</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 style_extra_funtion style_top_results">
+                <div class="row mt-5">
+                    <h5>TOP RESULTS</h5>
+                </div>
+            </div>
+
+            <div class="col-md-6 style_compare style_extra_funtion">
+                <div class="row mt-5">
+                    <h5>COMPARE</h5>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-4 style_comparison_hover" onclick="location.href='#'">
+                        <div class="row">
+                            <div class="col">
+                                <img src="buttons/ev_vs_ev.svg" alt="ev vs ev" class="mx-auto d-block">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <h6>EV vs EV</h6>
+                            <p class="explanation text-center">Compare the emission of different electric vehicles</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 style_comparison_hover" onclick="location.href='#'">
+                        <div class="row">
+                            <div class="col">
+                                <img src="buttons/icev_vs_ev.svg" alt="icev vs ev" class="mx-auto d-block">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <h6>ICEV vs EV</h6>
+                            <p class="explanation text-center">Compare the emission of an internal combustion engine vehicle and an electric vehicle</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 style_comparison_hover" onclick="location.href='#'">
+                        <div class="row">
+                            <div class="col">
+                                <img src="buttons/icev_vs_icev.svg" alt="icev vs icev" class="mx-auto d-block">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <h6>ICEV vs ICEV</h6>
+                            <p class="explanation text-center">Compare the emission of different internal combustion engine vehicles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"
+    ></script>
+</body>
+</html>

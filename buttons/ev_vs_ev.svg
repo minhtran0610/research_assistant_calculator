@@ -1,0 +1,17 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="60" cy="60" r="58.5" stroke="#2F2859" stroke-width="3"/>
+<path d="M90 66.6668V53.3335" stroke="#2F2859" stroke-width="3" stroke-linecap="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M86.6667 40L33.3333 40L33.3333 80H86.6667L86.6667 40Z" stroke="#2F2859" stroke-width="3" stroke-linecap="round"/>
+<mask id="path-4-inside-1" fill="white">
+<rect x="43.3333" y="50" width="6.66667" height="20" rx="1"/>
+</mask>
+<rect x="43.3333" y="50" width="6.66667" height="20" rx="1" stroke="#2F2859" stroke-width="6" mask="url(#path-4-inside-1)"/>
+<mask id="path-5-inside-2" fill="white">
+<rect x="56.6667" y="50" width="6.66667" height="20" rx="1"/>
+</mask>
+<rect x="56.6667" y="50" width="6.66667" height="20" rx="1" stroke="#2F2859" stroke-width="6" mask="url(#path-5-inside-2)"/>
+<mask id="path-6-inside-3" fill="white">
+<rect x="70" y="50" width="6.66666" height="20" rx="1"/>
+</mask>
+<rect x="70" y="50" width="6.66666" height="20" rx="1" stroke="#2F2859" stroke-width="6" stroke-linejoin="round" mask="url(#path-6-inside-3)"/>
+</svg>
