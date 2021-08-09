@@ -31,6 +31,14 @@
             font-family: "Open Sans", sans-serif;
         }
 
+        .style_sub_link:hover {
+            color: #e1e5f4;
+        }
+
+        .dropdown-item {
+            color: #4e008e;
+        }
+
         .style_container {
             height: 720px;
             background-color: #2f2859;
@@ -100,6 +108,11 @@
             font-weight: 700;
         }
 
+        .weather_values:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
         #tampere_university_logo {
             height: 65px;
         }
@@ -109,6 +122,10 @@
             font-size: 30px;
             font-weight: 700;
             color: #4e008e;
+        }
+
+        #tampere_university_logo:hover {
+            cursor: pointer;
         }
 
         h4 {
@@ -127,6 +144,7 @@
             <a class="nav-link dropdown-toggle style_sub_link" href="#" id="navbarComparisonLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Comparison
             </a>
+            <a href="documentation.html" class="style_sub_link">Documentation</a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">EV - EV</a></li>
                 <li><a class="dropdown-item" href="#">ICEV - ICEV</a></li>
@@ -321,17 +339,14 @@
                         <h4>RESULT</h4>
                         <p class="formula_explanation text-center">
                             Combining the datas using the formula:<br />
-                            total emission = efficiency * distance * CO2 emission per kWh<br />
+                            total emission = efficiency (amount of electricity consumed per 1km) * distance * CO2 emission per kWh<br />
                         </p>
                         <div
-                            class="formula_explanation text-center weather_values"
+                            class="formula_explanation text-center weather_values weather_values"
+                            id="weatherEffects"
                             data-bs-toggle="modal"
                             data-bs-target="#detailWeatherEffect"
                         >
-                            <p id="temperatureStatement">
-                                At ... degrees Celsius, the real energy consumption will equal ... of
-                                test values
-                            </p>
                         </div>
                         <p class="text-center style_results" id="totalEmissionResult">
                             The total emission of the trip: ... grams of CO2
@@ -443,7 +458,6 @@
                         class="btn style_dark_buttons"
                         id="manualTemperatureOkButton"
                         data-bs-dismiss="modal"
-                        disabled
                     >
                         OK
                     </button>

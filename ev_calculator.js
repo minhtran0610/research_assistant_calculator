@@ -182,20 +182,24 @@ async function getDistance(inputOrigin, inputDestination, manualWeatherButton, r
         }
 
         function callback(response) {
-            const durationInHours =
+            try {
+                const durationInHours =
                 Math.round(
                     response.rows["0"].elements["0"].duration_in_traffic.value / 36
                 ) / 100;
-            const distance =
-                Math.round(response.rows["0"].elements["0"].distance.value / 100) / 10;
+                const distance =
+                    Math.round(response.rows["0"].elements["0"].distance.value / 100) / 10;
 
-            // Update the results
-            document.getElementById(
-                "distance"
-            ).textContent = `${distance}km`;
-            document.getElementById(
-                "time"
-            ).textContent = `${durationInHours}h`;
+                // Update the results
+                document.getElementById(
+                    "distance"
+                ).textContent = `${distance}km`;
+                document.getElementById(
+                    "time"
+                ).textContent = `${durationInHours}h`;
+            } catch (err) {
+                alert("Cannot find the trip. Please try again!");
+            }
         }
 
         calculateDistance();
@@ -222,13 +226,21 @@ async function fetchFingridData() {
     }
 }
 
+// Process the time strings provided by Fingrid
+function processTimeString(timeString) {
+    let timeParts = timeString.split('T');
+    timeParts[1] = timeParts[1].slice(0,8);
+
+    return `${timeParts[0]}, ${timeParts[1]}, GMT+0`;
+}
+
 // Get the emission figure and update to the GUI
 async function getEmissionFactor() {
     let response = await fetchFingridData();
     
     // Update to the GUI
     document.getElementById('co2Result').textContent =
-        `The emission per 1kWh consumed, updated on ${response.start_time}`
+        `The emission per 1kWh consumed, updated on ${processTimeString(response.start_time)}`
         + `, is ${response.value} gCO2/kWh.`;
     document.getElementById('emission').textContent = `${response.value} gCO2/kWh`;
 }
@@ -323,10 +335,6 @@ async function getTemperatureUser(realtimeTemperatureButton) {
         "manualTemperatureOkButton"
     );
     const inputTemperatureForm = document.getElementById("inputTemperatureForm");
-      
-    inputTemperatureForm.onchange = () => {
-        manualTemperatureOkButton.disabled = false;
-    };
 
     manualTemperatureOkButton.onclick = () => {
         const temperature = inputTemperatureForm.value;
@@ -421,17 +429,26 @@ function calculateEmission() {
 
         // If the temperature is not given, only use the 3 database. Else, combine also
         // the effect of the temperature
+        const weatherEffects = document.getElementById('weatherEffects');
+        weatherEffects.innerHTML = '';
+
         if (!isNaN(temperature)) {
             let percentage = getConsumptionPercentage(temperature, environmentEffect);
             // Update the numbers to the GUI
-            document.getElementById('temperatureStatement').textContent = 
-                `At ${temperature} degrees Celsius, the real energy consumption equals ` +
+            const temperatureStatement = document.createElement('p');
+            weatherEffects.inn
+            
+            temperatureStatement.textContent = 
+                `At ${temperature} degrees Celsius, the real efficiency equals ` +
                 `${percentage}% of test values`;
+            const clickHere = document.createElement('p');
+            clickHere.textContent = 'Click here to see how the effects of temperature is evaluated';
+            
+            weatherEffects.appendChild(temperatureStatement);
+            weatherEffects.appendChild(clickHere);
+
             // Calcualte the real emission
             totalEmission = Math.round(totalEmission * percentage)/100;
-        } else {
-            document.getElementById('temperatureStatement').textContent = 
-                "No temperature is given!";
         }
         
         // Show the final result

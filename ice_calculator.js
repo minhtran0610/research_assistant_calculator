@@ -220,19 +220,23 @@ destinationInput.onchange = () => {
     );
 
     function callback(response) {
-      const durationInHours =
+      try {
+        const durationInHours =
         Math.round(
           response.rows["0"].elements["0"].duration_in_traffic.value / 36
         ) / 100;
-      const distance =
+        const distance =
         Math.round(response.rows["0"].elements["0"].distance.value / 100) / 10;
-      // Update the results
-      document.getElementById(
-        "trip_distance_result"
-      ).textContent = `${distance}km`;
-      document.getElementById(
-        "trip_duration_result"
-      ).textContent = `${durationInHours}h`;
+        // Update the results
+        document.getElementById(
+          "trip_distance_result"
+        ).textContent = `${distance}km`;
+        document.getElementById(
+          "trip_duration_result"
+        ).textContent = `${durationInHours}h`;
+      } catch (err) {
+        alert("Cannot find the trip. Please try again!");
+      }
     }
   };
 
@@ -264,10 +268,6 @@ const manualTemperatureOkButton = document.getElementById(
   "manualTemperatureOkButton"
 );
 const inputTemperatureForm = document.getElementById("inputTemperatureForm");
-
-inputTemperatureForm.onchange = () => {
-  manualTemperatureOkButton.disabled = false;
-};
 
 manualTemperatureOkButton.onclick = () => {
   const temperature = inputTemperatureForm.value;
@@ -321,16 +321,33 @@ okButton.onclick = () => {
     );
     let acFuelUsage = getAcFuelUsage(temperature, environmentEffect);
 
-    // Updata the corresponding values to the GUI
-    document.getElementById(
-      "temperatureStatement"
-    ).textContent = `At ${temperature} degrees Celsius:`;
-    document.getElementById("temperatureEffect").textContent =
-      `The real emission will change ${increaseInTemperature * 100}` +
-      `% compared to official test values.`;
-    document.getElementById("acEffect").textContent =
-      `The AC working will result in the consumption of ${acFuelUsage} litres ` +
-      `of fuel per hour.`;
+    // Update the corresponding values to the GUI
+    const weatherEffects = document.getElementById('weatherEffects');
+    weatherEffects.innerHTML = '';
+
+    let temperatureStatement = document.createElement('p');
+    temperatureStatement.textContent = `At ${temperature} degrees Celsius:`;
+    weatherEffects.appendChild(temperatureStatement);
+
+    let effects = [
+      `The real emission will change ${increaseInTemperature}% compared to official test
+    values.`,
+      `The AC working will result in the consumption of ${acFuelUsage} litres
+    of fuel per hour.`,
+      `One litre of fuel corresponds to 2350 grams of CO2.`
+    ];
+    let weatherEffectsList = document.createElement('ul');
+    effects.forEach((effect) => {
+      let li = document.createElement('li');
+      li.appendChild(document.createTextNode(effect));
+      weatherEffectsList.appendChild(li);
+    });
+
+    weatherEffects.appendChild(weatherEffectsList);
+
+    let clickHere = document.createElement('p');
+    clickHere.textContent = 'Click here to see how the effects of temperature is evaluated';
+    weatherEffects.appendChild(clickHere);
 
     // Calculate the total emission accordingly to the numbers we have obtained
     totalEmission =
@@ -338,15 +355,7 @@ okButton.onclick = () => {
       acFuelUsage * tripDuration * 2350;
   } else {
     // Updata the corresponding values to the GUI
-    document.getElementById(
-      "temperatureStatement"
-    ).textContent = `At ... degrees Celsius:`;
-    document.getElementById("temperatureEffect").textContent =
-      `The real emission will change ...` +
-      `% compared to official test values.`;
-    document.getElementById("acEffect").textContent =
-      `The AC working will result in the consumption of ... litres ` +
-      `of fuel per hour.`;
+    document.getElementById('weatherEffects').innerHTML = '';
   }
 
   const textResult = document.getElementById("total_emission_result");

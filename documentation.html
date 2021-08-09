@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap"
+        rel="stylesheet"
+    />
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous"
+    />
+</head>
+<body>
+    <style>
+        .style_nav_bar {
+            height: 80px;
+        }
+
+        .style_sub_link {
+            color: #4e008e;
+            font-size: 16px;
+            font-weight: 200;
+            text-decoration: none;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .style_sub_link:hover {
+            color: #e1e5f4;
+        }
+
+        .dropdown-item {
+            color: #4e008e;
+        }
+
+        .style_container {
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .style_paragraph {
+            font-size: 17px;
+        }
+
+        .citation {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        #tampere_university_logo {
+            height: 65px;
+        }
+
+        #tampere_university_logo:hover {
+            cursor: pointer;
+        }
+
+        #logo {
+            font-family: "Open Sans", sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: #4e008e;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4e008e;
+            font-weight: bold;
+            font-size: 40px;
+        }
+
+        h3 {
+            color: #4e008e;
+            font-weight: bold;
+        }
+
+        h4 {
+            color: #4e008e;
+        }
+    </style>
+
+    <nav class="navbar navbar-light style_nav_bar">
+        <div class="container justify-content-space-between align-items-center">
+            <a class="navbar-brand" id="logo" href="index.html">CO2 CALCULATOR</a>
+            <a class="style_sub_link" href="ice_calculator.html">ICE Vehicles</a>
+            <a class="style_sub_link" href="ev_calculator.html">Electric Vehicles</a>
+            <a class="nav-link dropdown-toggle style_sub_link" href="#" id="navbarComparisonLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Comparison
+            </a>
+            <a href="documentation.html" class="style_sub_link">Documentation</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="ev_vs_ev.html">EV - EV</a></li>
+                <li><a class="dropdown-item" href="#">ICEV - ICEV</a></li>
+                <li><a class="dropdown-item" href="#">EV - ICEV</a></li>
+            </ul>
+            <img
+                src="buttons/logo_TAU_fi-eng_violetti_RGB.png"
+                alt="Tampere University logo"
+                id="tampere_university_logo"
+                onclick="parent.open('https://www.tuni.fi/en/')"
+            />
+        </div>
+    </nav>
+
+    <div class="container style_container">
+        <!-- <h1>DOCUMENTATION FOR CO2 CALCULATOR</h1> -->
+        <p class="style_paragraph">
+            This website provides a demonstration on combining different data sources. The website calculates
+            CO2 emission of different trip patterns with different cars and different
+            origins and destinations. The effects of different temperatures are also considered.
+        </p>
+        <h3>1. ICE vehicles CO2 calculator</h3>
+        <p class="style_paragraph">
+            The calculator calculates the total emission using the tested average CO2 emission per kilometre and
+            distance of the trip. The temperature effects include the change in fuel consumption/CO2 emission
+            in different conditions and the usage of AC in hot weather.
+        </p>
+        <h4>a. Traffic data</h4>
+        <p class="style_paragraph">
+            The emission per kilometre travelled of different cars is obtained from Traficom [1]. Traficom provides
+            technical data on every car that has been registered in Finland. The database used in the program has been
+            filtered and contains the brands, models, versions, registration years and CO2 emissions of different
+            internal combustion passenger cars. The database used in the calculator is a JSON file in arrays on objects format.
+        </p>
+        <p class="style_paragraph">
+            The users enter the information for their desired car in the following order: brand, model, version, year. The calculator
+            will sort the database accordingly. The available options are given in a list of suggestions, appeared when the users enter their
+            inputs.
+        </p>
+        <h4>b. Trip data</h4>
+        <p class="style_paragraph">
+            The distance of the trip is obtained from Google Maps Javascript API [2]. The input fields use the Places Autocomplete library [3] of
+            the API. After the users have entered their desired places, the calculator uses the Distance Matrix service to calculate the distance and
+            time of travel [4]. In the <code>getDistanceMatrix()</code> request, <code>trafficModel</code> is set to <code>"bestguess"</code>.
+        </p>
+        <p class="text-center style_paragraph">
+            <code>
+                travelMode: "DRIVING",
+                drivingOptions: {
+                    departureTime: new Date(),
+                    trafficModel: "bestguess",
+                }
+            </code>
+        </p>
+        <h4>c. Weather data</h4>
+        <p class="style_paragraph">
+            The temperature data is obtained from AccuWeather [5]. For simplicity, the program obtains the temperature at the origin, as most people
+            will drive in not a very long distance everyday.
+        </p>
+        <p class="style_paragraph">
+            Getting the temperature from AccuWeather requires 2 steps: finding the suitable location key for the origin using AccuWeather's Geoposition Search API [6], and
+            get the temperature using that location key using the Current Conditions API [7]. As the Geoposition Search API uses latitude and longitude of the place,
+            the calculator also uses the Geocoding Service from Google Maps.
+        </p>
+        <p class="style_paragraph">
+            Users also have the choice to manually enter their desired temperature to the program.
+        </p>
+        <h4>d. How the calculations are carried out</h4>
+        <p class="style_paragraph">
+            The calculator can carry out calculations with or without the temperature. If the temperature is not given, the total emission
+            will be calculated as <b>average emission</b> * <b>distance</b>.
+        </p>
+        <p class="style_paragraph">
+            If the temperature is given, the effects of temperature includes different real-world consumption in different conditions,
+            and the usage of AC if the weather is hot.
+        </p>
+        <p class="style_paragraph">
+            Considering the manufacturers' tests were conducted at 20 degrees Celsius, different temperatures affect the real-world values differently [8]:
+        </p>
+        <ul class="style_paragraph">
+            <li>-7 degrees Celsius: 16% increase</li>
+            <li>0 degree Celsius: 11% increase</li>
+            <li>10 degrees Celsius: 5% increase</li>
+            <li>30 degrees Celsius: 2% decrease</li>
+        </ul>
+        <p class="style_paragraph">
+            The car users might want to use the AC if the weather outside is unfavourable. While most cars uses heat from the engine to heat the car in cold weather, cooling down the car in 
+            hot weather requires fuel. Fuel consumption for AC usage will be considered if the weather outside is greater than 20 degrees Celsius. The consumption per hour increases linearly 
+            from 20 degrees to 30 degrees (+0.04 litres per hour for each degree rised, e.g. 0.12 litres per hour in 23 degrees and 0.2 litres per hour in 25 degrees, etc.), and stays at 0.4 
+            litres per hour if the temperature exceeds 30 degrees.
+        </p>
+        <p class="style_paragraph">
+            The program obtains the real-world temperature and decides the closest data points to the result. The according effects will be used in calculating the final CO2 consumption.
+        </p>
+        <h3>2. Electric vehicles CO2 calculator</h3>
+        <p class="style_paragraph">
+            The calculator calculates the total CO2 emission using the cars' efficiency, which is the amount of electricity consumed in a kilometre, the distance of the trip, and the 
+            emission factor, which is the amount of CO2 emitted per 1 kWh of electricity consumed.
+        </p>
+        <h4>a. Traffic data</h4>
+        <p class="style_paragraph">
+            The traffic data is provided by EV-Database [9]. As EV-Database does not provide any APIs, a JSON file is created based on
+            the brands, models and efficiency figures from the webpage.
+        </p>
+        <p class="style_paragraph">
+            Users enter the information of their desired car in the following order: brand and model. The calculator will sort and filter the database
+            accordingly. The available options given in a list of suggestions, appears when users enter their inputs.
+        </p>
+        <h4>b. Trip data</h4>
+        <p class="style_paragraph">
+            The method of obtaining trip distance is the same as the ICE vehicle CO2 calculator.
+        </p>
+        <h4>c. Emission factor data</h4>
+        <p class="style_paragraph">
+            The emission factor of each kWh of electricity consumed is provided by Fingrid, through Emission factor for electricity consumed in Finland - real time data API. [10]
+            The API provides figures on the emission factor and the time the figure is updated. For simplicity, this figure will be used in
+            calculating the total CO2 emission.
+        </p>
+        <h4>d. Weather data</h4>
+        <p class="style_paragraph">
+            The method of obtaining the temperature is the same as the ICE vehicle CO2 calculator.
+        </p>
+        <h4>e. How the calculations are carried out</h4>
+        <p class="style_paragraph">
+            The calculator can carry out calculations with or without the temperature. If the temperature is not given, the total emission will be
+            calculated as <b>efficiency * distance * emission factor</b>.
+        </p>
+        <p class="style_paragraph">
+            If the temperature is given, the calculation will consider the fact that real-world range will change in different conditions [10]:
+        </p>
+        <ul class="style_paragraph">
+            <li>-20 degrees Celsius: 50% rated range</li>
+            <li>-10 degree Celsius: 60% rated range</li>
+            <li>0 degree Celsius: 80% rated range</li>
+            <li>10 degrees Celsius: 100% rated range</li>
+            <li>20 degrees Celsius: 115% rated range</li>
+            <li>30 degrees Celsius: 105% rated range</li>
+            <li>40 degrees Celsius: 80% rated range</li>
+        </ul>
+        <p class="style_paragraph">
+            The program obtains the real-world temperature and decides the
+            closest data point to the result. The according effect will be
+            used in calculating the final CO2 consumption. For simplicity,
+            the energy efficiency is considered to be inversely proportional to
+            range.
+        </p>
+        <h3>3. Links and citations</h3>
+        <ul class="citation">
+            <li>[1] https://www.traficom.fi/en/news/open-data?toggle=Open%20data%20for%20vehicles%20version%205.14</li>
+            <li>[2] https://developers.google.com/maps/documentation/javascript/overview</li>
+            <li>[3] https://developers.google.com/maps/documentation/javascript/places-autocomplete</li>
+            <li>[4] https://developers.google.com/maps/documentation/javascript/distancematrix</li>
+            <li>[5] https://developer.accuweather.com/</li>
+            <li>[6] https://developer.accuweather.com/accuweather-locations-api/apis/get/locations/v1/cities/geoposition/search</li>
+            <li>[7] https://developer.accuweather.com/accuweather-current-conditions-api/apis/get/currentconditions/v1/%7BlocationKey%7D</li>
+            <li>
+                [8] Fontaras, G., Zacharof, N.-G., & Ciuffo, B. (2017, February 21). Fuel consumption and CO2 emissions from passenger cars in Europe
+                 – Laboratory versus real-world emissions. Progress in Energy and Combustion Science. https://www.sciencedirect.com/science/article/pii/S0360128516300442.
+            </li>
+            <li>[9] https://ev-database.org/</li>
+            <li>[10] To what degree does temperature impact ev range? Geotab. (n.d.). https://www.geotab.com/blog/ev-range/. </li>
+        </ul>
+    </div>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"
+    ></script>
+</body>
+</html>

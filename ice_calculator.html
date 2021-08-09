@@ -84,6 +84,10 @@
         font-family: "Open Sans", sans-serif;
       }
 
+      .style_sub_link:hover {
+        color: #e1e5f4;
+      }
+
       .style_comparison_hover:hover {
         text-decoration: underline;
       }
@@ -113,11 +117,8 @@
         text-decoration: none;
       }
 
-      .weather_values {
-        cursor: pointer;
-      }
-
       .weather_values:hover {
+        cursor: pointer;
         text-decoration: underline;
       }
 
@@ -140,8 +141,16 @@
         color: #2f2859;
       }
 
+      .dropdown-item {
+        color: #4e008e;
+      }
+
       #tampere_university_logo {
         height: 65px;
+      }
+
+      #tampere_university_logo:hover {
+        cursor: pointer;
       }
 
       #quote_details {
@@ -213,6 +222,7 @@
           <a class="nav-link dropdown-toggle style_sub_link" href="#" id="navbarComparisonLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Comparison
           </a>
+          <a href="documentation.html" class="style_sub_link">Documentation</a>
           <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">EV - EV</a></li>
               <li><a class="dropdown-item" href="#">ICEV - ICEV</a></li>
@@ -494,21 +504,10 @@
               </p>
               <div
                 class="formula_explanation text-center weather_values"
+                id="weatherEffects"
                 data-bs-toggle="modal"
                 data-bs-target="#detailWeatherEffect"
               >
-                <p id="temperatureStatement">At ... degrees Celsius:</p>
-                <ul>
-                  <li id="temperatureEffect">
-                    The real emission will change ...% compared to official test
-                    values.
-                  </li>
-                  <li id="acEffect">
-                    The AC working will result in the consumption of ... litres
-                    of fuel per hour.
-                  </li>
-                  <li>One litre of fuel corresponds to 2350 grams of CO2.</li>
-                </ul>
               </div>
               <p class="text-center" id="total_emission_result">
                 The total emission of the trip: ... grams of CO2
@@ -635,7 +634,6 @@
               class="btn style_dark_buttons"
               id="manualTemperatureOkButton"
               data-bs-dismiss="modal"
-              disabled
             >
               OK
             </button>
