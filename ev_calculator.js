@@ -267,48 +267,6 @@ async function getTemperature(locationKey) {
     const temperatureTextResult = document.getElementById(
         "temperatureResultText"
     );
-    const temperatureResult = document.getElementById("temperature_result");
-  
-    let url = `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=Hy1GOAded2vMrGTDAu2bXcXRW4gjGI2i`;
-  
-    // Call the Current Conditions API to get the weather and the temperature of the origin
-    try {
-        let response = await fetch(url);
-        if (response.ok) {
-            let jsonResponse = await response.json();
-            // Update the weather and temperature of the origin on the GUI
-            let temperature = jsonResponse[0].Temperature.Metric.Value;
-    
-            temperatureTextResult.textContent = `The current temperature at the origin is ${temperature} degrees Celsius`;
-            temperatureResult.textContent = `${temperature}\u00B0C`;
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-// Get the location key from AccuWeather
-async function getLocationKey(latitude, longtitude) {
-    let url = `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=Hy1GOAded2vMrGTDAu2bXcXRW4gjGI2i&q=${latitude}%2C%20${longtitude}`;
-  
-    // Call the Locations API from AccuWeather to search for the location key
-    try {
-        let response = await fetch(url);
-        if (response.ok) {
-            let jsonResponse = await response.json();
-            return jsonResponse.Key;
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-  
-// Get the current temperature of the origin from AccuWeather
-async function getTemperature(locationKey) {
-    // Get the elements that contains the result
-    const temperatureTextResult = document.getElementById(
-        "temperatureResultText"
-    );
     const temperatureResult = document.getElementById("temperature");
 
     let url = `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=Hy1GOAded2vMrGTDAu2bXcXRW4gjGI2i`;
@@ -387,8 +345,8 @@ function findClosest(arr, num) {
     return closest;
 }
 
-// Get the percentage of range changed according to the temperature
-function getConsumptionPercentage(temperature, environmentEffect) {
+// Get the percentage of efficiency changed according to the temperature
+function getEfficiencyPercentage(temperature, environmentEffect) {
     const dataPoints = Object.keys(environmentEffect.temperature);
 
     const intDataPoints = [];
@@ -433,7 +391,7 @@ function calculateEmission() {
         weatherEffects.innerHTML = '';
 
         if (!isNaN(temperature)) {
-            let percentage = getConsumptionPercentage(temperature, environmentEffect);
+            let percentage = getEfficiencyPercentage(temperature, environmentEffect);
             // Update the numbers to the GUI
             const temperatureStatement = document.createElement('p');
             weatherEffects.inn
