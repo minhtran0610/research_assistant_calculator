@@ -331,8 +331,9 @@ async function getRealtimeTemperature(inputOrigin, temperatureTextResult) {
     
     
     async function callback(response) {
-        let latitude = response[0].geometry.viewport.mc.g;
-        let longtitude = response[0].geometry.viewport.Eb.g;
+        console.log(response);
+        let latitude = response[0].geometry.viewport.tc.g;
+        let longtitude = response[0].geometry.viewport.Hb.g;
     
         let locationKey = await getLocationKey(latitude, longtitude);
         getTemperature(locationKey, temperatureTextResult);
@@ -377,7 +378,7 @@ function calculateEmission(efficiency, distance, temperature, emissionFactor, to
     }
 
     let efficiencyPercentage = getEfficiencyPercentage(temperature, ENVIRONMENT_EFFECT);
-    totalEmission = totalEmission * efficiencyPercentage/100;
+    totalEmission = Math.round(totalEmission * efficiencyPercentage * 100)/100;
     
     totalEmissionElement.textContent = `${totalEmission} gCO2`;
     return totalEmission;

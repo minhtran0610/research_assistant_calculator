@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EV vs EV</title>
+    <title>ICEV vs ICEV</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap"
@@ -44,10 +44,14 @@
         }
 
         .style_custom_row_2 {
-            height: 150px;
+            height: 200px;
+        }
+        
+        .style_custom_row_3 {
+            height: 100px;
         }
 
-        .style_custom_row_3 {
+        .style_custom_row_4 {
             height: 80px;
         }
 
@@ -77,6 +81,10 @@
 
         #tampere_university_logo {
             height: 65px;
+        }
+
+        #tampere_university_logo:hover {
+            cursor: pointer;
         }
 
         #logo {
@@ -111,13 +119,15 @@
     </nav>
 
     <div class="container-fluid style_main_dialog">
+        <div class="row style_custom_row_1"></div>
+        
         <div class="row justify-content-center align-items-center style_custom_row_2">
             <div class="col-md-5">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4 col-xl-3">
                         <label for="input_make_1" class="col-form-label">Make</label>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-8 col-xl-9">
                         <input
                             type="text"
                             list="car_make_options_1"
@@ -127,12 +137,12 @@
                         <datalist id="car_make_options_1"></datalist>
                     </div>
                 </div>
-        
+      
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4 col-xl-3">
                         <label for="input_model_1" class="col-form-label">Model</label>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-8 col-xl-9">
                         <input
                             type="text"
                             list="car_model_options_1"
@@ -143,14 +153,46 @@
                         <datalist id="car_model_options_1"></datalist>
                     </div>
                 </div>
+      
+                <div class="row">
+                    <div class="col-md-4 col-xl-3">
+                        <label for="input_version_1" class="col-form-label">Version</label>
+                    </div>
+                    <div class="col-md-8 col-xl-9">
+                        <input
+                            type="text"
+                            list="car_version_options_1"
+                            id="input_version_1"
+                            class="form-control"
+                            disabled
+                        />
+                        <datalist id="car_version_options_1"></datalist>
+                    </div>
+                </div>
+      
+                <div class="row">
+                    <div class="col-md-4 col-xl-3">
+                        <label for="input_year_1" class="col-form-label">Year</label>
+                    </div>
+                    <div class="col-md-8 col-xl-9">
+                        <input
+                            type="text"
+                            list="car_year_options_1"
+                            id="input_year_1"
+                            class="form-control"
+                            disabled
+                        />
+                        <datalist id="car_year_options_1"></datalist>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-5">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4 col-xl-3">
                         <label for="input_make_2" class="col-form-label">Make</label>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-8 col-xl-9">
                         <input
                             type="text"
                             list="car_make_options_2"
@@ -160,12 +202,12 @@
                         <datalist id="car_make_options_2"></datalist>
                     </div>
                 </div>
-        
+      
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4 col-xl-3">
                         <label for="input_model_2" class="col-form-label">Model</label>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-8 col-xl-9">
                         <input
                             type="text"
                             list="car_model_options_2"
@@ -176,12 +218,44 @@
                         <datalist id="car_model_options_2"></datalist>
                     </div>
                 </div>
+      
+                <div class="row">
+                    <div class="col-md-4 col-xl-3">
+                        <label for="input_version_2" class="col-form-label">Version</label>
+                    </div>
+                    <div class="col-md-8 col-xl-9">
+                        <input
+                            type="text"
+                            list="car_version_options_2"
+                            id="input_version_2"
+                            class="form-control"
+                            disabled
+                        />
+                        <datalist id="car_version_options_2"></datalist>
+                    </div>
+                </div>
+      
+                <div class="row">
+                    <div class="col-md-4 col-xl-3">
+                        <label for="input_year_2" class="col-form-label">Year</label>
+                    </div>
+                    <div class="col-md-8 col-xl-9">
+                        <input
+                            type="text"
+                            list="car_year_options_2"
+                            id="input_year_2"
+                            class="form-control"
+                            disabled
+                        />
+                        <datalist id="car_year_options_2"></datalist>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="row style_custon_row_1"></div>
+        <div class="row style_custom_row_1"></div>
 
-        <div class="row justify-content-center align-items-center style_custom_row_2">
+        <div class="row justify-content-center align-items-center style_custom_row_3">
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-md-3">
@@ -243,41 +317,35 @@
 
         <div class="row style_custom_row_1"></div>
 
-        <div class="row style-custom_row_2 justify-content-center align-items-center">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-5 text-center">
-                    <p id="temperature_statement_1">The current temperature at the origin is ...</p>
-                </div>
-                <div class="col-md-5 text-center">
-                    <p id="temperature_statement_2">The current temperature at the origin is ...</p>
-                </div>
+        <div class="row justify-content-center align-items-center style_custom_row_4">
+            <div class="col-md-5 text-center">
+                <p id="temperature_statement_1">The current temperature at the origin is ...</p>
             </div>
-            
-            <div class="row text-center justify-content-center align-items-center">
-                <div class="col-md-10">
-                    <p id="emission_factor">The emission per 1kWh consumed, updated at ..., is ...</p>
-                </div>
+
+            <div class="col-md-5 text-center">
+                <p id="temperature_statement_2">The current temperature at the origin is ...</p>
             </div>
         </div>
     </div>
 
-    <div class="container-fluid style_result_dialog">
+    <div class="container_fluid style_result_dialog">
         <div class="row style_custom_row_1"></div>
 
         <div class="row justify-content-center align-items-center style_custom_row_3">
             <div class="col-md-5 text-center">
-                <div id="efficiency_1">Efficiency</div>
+                <div id="average_emission_1">Average Emission</div>
                 <div id="distance_1">Distance</div>
-                <div id="total_emission_1">Emission</div>
+                <div id="travel_time_1">Travel time</div>
+                <div id="emission_1">Emission</div>
             </div>
-    
             <div class="col-md-5 text-center">
-                <div id="efficiency_2">Efficiency</div>
+                <div id="average_emission_2">Average Emission</div>
                 <div id="distance_2">Distance</div>
-                <div id="total_emission_2">Emission</div>
+                <div id="travel_time_2">Travel time</div>
+                <div id="emission_2">Emission</div>
             </div>
         </div>
-    
+
         <div class="row justify-content-center align-items-center">
             <div class="col-md-2 justify-content-center align-items-center">
                 <button
@@ -293,7 +361,7 @@
         <div class="row style_custom_row_1"></div>
     </div>
 
-    <script src="ev_vs_ev.js"></script>
+    <script src="icev_vs_icev.js"></script>
     <script
         async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAQhxgaCaHdn0TIEGfZYn-a0mZolCZqW0&libraries=places&callback=initMap"
