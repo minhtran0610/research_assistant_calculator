@@ -173,6 +173,14 @@ function checkSmallerValue(field_1, field_2, value_1, value_2) {
     }
 }
 
+// Process the time strings provided by Fingrid
+function processTimeString(timeString) {
+    let timeParts = timeString.split('T');
+    timeParts[1] = timeParts[1].slice(0,8);
+
+    return `${timeParts[0]}, ${timeParts[1]}, GMT+0`;
+}
+
 // Retrieve the emission factor information from Fingrid
 async function fetchFingridData() {
     const url = 'https://api.fingrid.fi/v1/variable/265/event/json';
@@ -199,7 +207,7 @@ async function getEmissionFactor(emissionFactorField) {
     
     // Update to the GUI
     emissionFactorField.textContent =
-        `The emission per 1kWh consumed, updated on ${response.start_time}`
+        `The emission per 1kWh consumed, updated on ${processTimeString(response.start_time)}`
         + `, is ${response.value} gCO2/kWh.`;
 
     emissionFactor = response.value;
@@ -371,14 +379,14 @@ function getEfficiencyPercentage(temperature, environmentEffect) {
 
 // Calculate the total emission
 function calculateEmission(efficiency, distance, temperature, emissionFactor, totalEmissionElement) {
-    let totalEmission = Math.round(efficiency * distance * emissionFactor / 10)/100;
+    let totalEmission = efficiency * distance * emissionFactor / 1000;
     if (isNaN(totalEmission)) {
         alert("Enter the information of the car and the trip first!");
         return;
     }
 
     let efficiencyPercentage = getEfficiencyPercentage(temperature, ENVIRONMENT_EFFECT);
-    totalEmission = Math.round(totalEmission * efficiencyPercentage * 100)/100;
+    totalEmission = Math.round(totalEmission * efficiencyPercentage)/100;
     
     totalEmissionElement.textContent = `${totalEmission} gCO2`;
     return totalEmission;
