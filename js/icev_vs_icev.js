@@ -171,7 +171,8 @@ okButton.onclick = () => {
 // Necessary functions
 // Retrieve the car data
 async function fetchCarData() {
-  const url = "https://minhtran0610.github.io/data/car_data_2.json";
+  const url =
+    "https://minhtran0610.github.io/car_databases/data/car_data_2.json";
 
   try {
     let response = await fetch(url);

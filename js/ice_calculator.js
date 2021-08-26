@@ -35,7 +35,8 @@ const ENVIRONMENT_EFFECT = {
 };
 
 // Parse the JSON file of the car data
-let carUrl = "https://minhtran0610.github.io/data/car_data_2.json";
+let carUrl =
+  "https://minhtran0610.github.io/car_databases/data/car_data_2.json";
 let carRequest = new XMLHttpRequest();
 carRequest.responseType = "json";
 carRequest.open("GET", carUrl);

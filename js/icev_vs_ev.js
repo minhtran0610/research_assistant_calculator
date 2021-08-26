@@ -183,9 +183,8 @@ async function getICEVInformation(
   emissionElement
 ) {
   // Fetch the database
-  console.log("Fetching....");
   const carDatabase = await fetchCarData(
-    "https://minhtran0610.github.io/data/car_data_2.json"
+    "https://minhtran0610.github.io/car_databases/data/car_data_2.json"
   );
 
   // Create a datalist for the car make input
@@ -276,9 +275,8 @@ async function getEVInformation(
   efficiencyElement
 ) {
   // Fetch the data
-  console.log("Fetching....");
   const carDatabase = await fetchCarData(
-    "https://minhtran0610.github.io/data/ev_data.json"
+    "https://minhtran0610.github.io/car_databases/data/ev_data.json"
   );
 
   // The events of the input fields
