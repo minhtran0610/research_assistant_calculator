@@ -1,3 +1,10 @@
+<!-- 
+  Copyright (c) 2021 Tampere University
+  This web-based program was developed as a part of the project: Experiment with data mashups and report/demonstrate
+  This source code is licensed under the 3-clause BSD license. See LICENSE file in the repository root directory.
+  Author(s): Minh Tran <minh.s.tran@tuni.fi>
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -216,24 +223,35 @@
 
     <nav class="navbar navbar-light style_nav_bar">
       <div class="container justify-content-space-between align-items-center">
-          <a class="navbar-brand" id="logo" href="index.html">CO2 CALCULATOR</a>
-          <a class="style_sub_link" href="ice_calculator.html">ICE Vehicles</a>
-          <a class="style_sub_link" href="ev_calculator.html">Electric Vehicles</a>
-          <a class="nav-link dropdown-toggle style_sub_link" href="#" id="navbarComparisonLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Comparison
-          </a>
-          <a href="documentation.html" class="style_sub_link">Documentation</a>
-          <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="ev_vs_ev.html">EV - EV</a></li>
-              <li><a class="dropdown-item" href="icev_vs_icev.html">ICEV - ICEV</a></li>
-              <li><a class="dropdown-item" href="icev_vs_ev.html">EV - ICEV</a></li>
-          </ul>
-          <img
-              src="buttons/logo_TAU_fi-eng_violetti_RGB.png"
-              alt="Tampere University logo"
-              id="tampere_university_logo"
-              onclick="parent.open('https://www.tuni.fi/en/')"
-          />
+        <a class="navbar-brand" id="logo" href="index.html">CO2 CALCULATOR</a>
+        <a class="style_sub_link" href="ice_calculator.html">ICE Vehicles</a>
+        <a class="style_sub_link" href="ev_calculator.html"
+          >Electric Vehicles</a
+        >
+        <a
+          class="nav-link dropdown-toggle style_sub_link"
+          href="#"
+          id="navbarComparisonLink"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Comparison
+        </a>
+        <a href="documentation.html" class="style_sub_link">Documentation</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="ev_vs_ev.html">EV - EV</a></li>
+          <li>
+            <a class="dropdown-item" href="icev_vs_icev.html">ICEV - ICEV</a>
+          </li>
+          <li><a class="dropdown-item" href="icev_vs_ev.html">EV - ICEV</a></li>
+        </ul>
+        <img
+          src="buttons/logo_TAU_fi-eng_violetti_RGB.png"
+          alt="Tampere University logo"
+          id="tampere_university_logo"
+          onclick="parent.open('https://www.tuni.fi/en/')"
+        />
       </div>
     </nav>
 
@@ -507,8 +525,7 @@
                 id="weatherEffects"
                 data-bs-toggle="modal"
                 data-bs-target="#detailWeatherEffect"
-              >
-              </div>
+              ></div>
               <p class="text-center" id="total_emission_result">
                 The total emission of the trip: ... grams of CO2
               </p>

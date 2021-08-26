@@ -1,7 +1,14 @@
+/**
+ * Copyright (c) 2021 Tampere University
+ * This web-based program was developed as a part of the project: Experiment with data mashups and report/demonstrate
+ * This source code is licensed under the 3-clause BSD license. See LICENSE file in the repository root directory.
+ * Author(s): Minh Tran <minh.s.tran@tuni.fi>
+ */
+
 // Database to study the effects of outside environment on CO2 emission
 // The data is provided by the article "Fuel consumption and CO2 emissions from passenger cars in Europe
 // Laboratory versus real-world emissions"
-const environmentEffect = {
+const ENVIRONMENT_EFFECT = {
   temperature: {
     "-7": 0.16,
     0: 0.11,
@@ -222,11 +229,12 @@ destinationInput.onchange = () => {
     function callback(response) {
       try {
         const durationInHours =
-        Math.round(
-          response.rows["0"].elements["0"].duration_in_traffic.value / 36
-        ) / 100;
+          Math.round(
+            response.rows["0"].elements["0"].duration_in_traffic.value / 36
+          ) / 100;
         const distance =
-        Math.round(response.rows["0"].elements["0"].distance.value / 100) / 10;
+          Math.round(response.rows["0"].elements["0"].distance.value / 100) /
+          10;
         // Update the results
         document.getElementById(
           "trip_distance_result"
@@ -317,15 +325,15 @@ okButton.onclick = () => {
     // Get the figures related to the input from the object of environmental effect
     let increaseInTemperature = getIncreaseInTemperature(
       temperature,
-      environmentEffect
+      ENVIRONMENT_EFFECT
     );
-    let acFuelUsage = getAcFuelUsage(temperature, environmentEffect);
+    let acFuelUsage = getAcFuelUsage(temperature, ENVIRONMENT_EFFECT);
 
     // Update the corresponding values to the GUI
-    const weatherEffects = document.getElementById('weatherEffects');
-    weatherEffects.innerHTML = '';
+    const weatherEffects = document.getElementById("weatherEffects");
+    weatherEffects.innerHTML = "";
 
-    let temperatureStatement = document.createElement('p');
+    let temperatureStatement = document.createElement("p");
     temperatureStatement.textContent = `At ${temperature} degrees Celsius:`;
     weatherEffects.appendChild(temperatureStatement);
 
@@ -334,19 +342,20 @@ okButton.onclick = () => {
     values.`,
       `The AC working will result in the consumption of ${acFuelUsage} litres
     of fuel per hour.`,
-      `One litre of fuel corresponds to 2350 grams of CO2.`
+      `One litre of fuel corresponds to 2350 grams of CO2.`,
     ];
-    let weatherEffectsList = document.createElement('ul');
+    let weatherEffectsList = document.createElement("ul");
     effects.forEach((effect) => {
-      let li = document.createElement('li');
+      let li = document.createElement("li");
       li.appendChild(document.createTextNode(effect));
       weatherEffectsList.appendChild(li);
     });
 
     weatherEffects.appendChild(weatherEffectsList);
 
-    let clickHere = document.createElement('p');
-    clickHere.textContent = 'Click here to see how the effects of temperature is evaluated';
+    let clickHere = document.createElement("p");
+    clickHere.textContent =
+      "Click here to see how the effects of temperature is evaluated";
     weatherEffects.appendChild(clickHere);
 
     // Calculate the total emission accordingly to the numbers we have obtained
@@ -355,7 +364,7 @@ okButton.onclick = () => {
       acFuelUsage * tripDuration * 2350;
   } else {
     // Updata the corresponding values to the GUI
-    document.getElementById('weatherEffects').innerHTML = '';
+    document.getElementById("weatherEffects").innerHTML = "";
   }
 
   const textResult = document.getElementById("total_emission_result");
@@ -435,8 +444,8 @@ async function getTemperature(locationKey) {
 
 // Get the temperature and check the percentage of the change of emission according to the values
 // provided in the object of effect of the environment
-function getIncreaseInTemperature(temperature, environmentEffect) {
-  const dataPoints = Object.keys(environmentEffect.temperature);
+function getIncreaseInTemperature(temperature, ENVIRONMENT_EFFECT) {
+  const dataPoints = Object.keys(ENVIRONMENT_EFFECT.temperature);
 
   const intDataPoints = [];
   dataPoints.forEach((dataPoint) => {
@@ -444,16 +453,16 @@ function getIncreaseInTemperature(temperature, environmentEffect) {
   });
 
   closestDataPoint = findClosest(intDataPoints, temperature);
-  return environmentEffect.temperature[closestDataPoint];
+  return ENVIRONMENT_EFFECT.temperature[closestDataPoint];
 }
 
 // Check the effect of AC working during the trip according to the temperature and
 // and the values according to the object of environmental effect
-function getAcFuelUsage(temperature, environmentEffect) {
-  const dataPoints = Object.keys(environmentEffect.AC);
+function getAcFuelUsage(temperature, ENVIRONMENT_EFFECT) {
+  const dataPoints = Object.keys(ENVIRONMENT_EFFECT.AC);
 
   closestDataPoint = findClosest(dataPoints, temperature);
-  return environmentEffect.AC[closestDataPoint];
+  return ENVIRONMENT_EFFECT.AC[closestDataPoint];
 }
 
 // Find the closest number in an array to a given number
