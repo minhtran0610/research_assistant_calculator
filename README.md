@@ -6,4 +6,4 @@ Experiment with data mashups and report/demonstrate, supervised by Professor Kar
 The web system contains 2 demos for 2 types of vehicles: internal combustion engine (ICE) passenger cars and electric passenger cars. Comparisons between different cars
 and trips are also possible.
 
-The documentations of the demo and the summary of the research project can be found in the web system and repository.
+The documentations of the demo can be found in the web system. The summary of the research can be found here: https://tuni-my.sharepoint.com/:w:/g/personal/minh_s_tran_tuni_fi/ETF189ScuppEhJy2jzvgXXgByGD8WpGbsxxvur8fJ1p1uQ?e=0hS8NE.
