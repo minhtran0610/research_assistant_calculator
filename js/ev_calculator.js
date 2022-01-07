@@ -340,8 +340,8 @@ async function getTemperatureUser(realtimeTemperatureButton) {
     );
 
     async function callback(response) {
-      let latitude = response[0].geometry.viewport.tc.g;
-      let longtitude = response[0].geometry.viewport.Hb.g;
+      let latitude = response[0].geometry.viewport.Ab.g;
+      let longtitude = response[0].geometry.viewport.Ra.g;
 
       let locationKey = await getLocationKey(latitude, longtitude);
       getTemperature(locationKey);
