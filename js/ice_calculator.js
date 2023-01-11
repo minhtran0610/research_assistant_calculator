@@ -264,8 +264,9 @@ realtimeTemperatureButton.onclick = async () => {
   );
 
   async function callback(response) {
-    let latitude = response[0].geometry.viewport.Ab.g;
-    let longtitude = response[0].geometry.viewport.Ra.g;
+    // console.log(response[0])
+    let latitude = response[0].geometry.viewport.Wa.hi;
+    let longtitude = response[0].geometry.viewport.Ia.hi;
 
     let locationKey = await getLocationKey(latitude, longtitude);
     getTemperature(locationKey);

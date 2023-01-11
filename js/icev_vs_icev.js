@@ -452,8 +452,8 @@ async function getRealtimeTemperature(inputOrigin, temperatureTextResult) {
   async function callback(response) {
     try {
       // console.log(response);
-      let latitude = response[0].geometry.viewport.Ab.g;
-      let longtitude = response[0].geometry.viewport.Ra.g;
+      let latitude = response[0].geometry.viewport.Wa.hi;
+      let longtitude = response[0].geometry.viewport.Ia.hi;
 
       let locationKey = await getLocationKey(latitude, longtitude);
       getTemperature(locationKey, temperatureTextResult);
